@@ -29,7 +29,7 @@ module.exports = Class.extend({
           str;
 
       str = _.reduce(this._serverless.service.custom.writeEnvVars, function(memo, val, key) {
-         return memo + key + '=' + val + '\n';
+         return memo + key + '=' + JSON.stringify(val) + '\n';
       }, '');
 
       return Q.ninvoke(fs, 'writeFile', filePath, str.trim())
